@@ -5,11 +5,11 @@ import {Provider} from 'react-redux'
 import {renderRoutes} from "react-router-config"
 import routes from '../routes'
 
-export const render = (ctx, store) => {
+export const render = (ctx, store, context) => {
 
   const html = renderToString(
       <Provider store={store}>
-        <StaticRouter location={ctx.path} context={{}}>
+        <StaticRouter location={ctx.path} context={context}>
           {renderRoutes(routes)}
         </StaticRouter>
       </Provider>

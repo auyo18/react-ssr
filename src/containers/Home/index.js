@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {getHomeArticleList} from "./store/actions"
+import './index.scss'
 
 class Home extends Component {
   componentDidMount() {
@@ -9,7 +10,7 @@ class Home extends Component {
 
   render() {
     return (
-        <div>
+        <div className="home">
           <p>this is home</p>
           <p>{this.props.name}</p>
           {
