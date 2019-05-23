@@ -11,7 +11,7 @@ class Home extends Component {
   render() {
     return (
         <div>
-          <Header/>
+          <Header />
           <p>this is home</p>
           <p>{this.props.name}</p>
           {
@@ -26,8 +26,9 @@ class Home extends Component {
   }
 }
 
-Home.loadData = () => {
+Home.loadData = (store) => {
   // 负责在服务器渲染之前，把数据加载好
+  return store.dispatch(getHomeArticleList())
 }
 
 const mapStateToProps = state => ({
