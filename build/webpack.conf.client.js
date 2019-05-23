@@ -3,7 +3,7 @@ const merge = require('webpack-merge')
 const baseConfig = require('./webpack.conf.base')
 
 const config = merge(baseConfig, {
-  mode: 'development',
+  mode: 'production',
   entry: './src/client/index.js',
   output: {
     filename: "index.js",

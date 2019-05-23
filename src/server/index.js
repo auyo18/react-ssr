@@ -1,14 +1,27 @@
 import koa from 'koa'
 import React from 'react'
 import Static from 'koa-static'
+import {matchRoutes} from "react-router-config"
+import conditional from 'koa-conditional-get'
+import etag from 'koa-etag'
 import {render} from "../utils"
+import {getStore} from "../store"
+import routes from "../routes"
 
 const app = new koa()
 
+app.use(conditional())
+app.use(etag())
 app.use(Static('bundle'))
 
 app.use(async ctx => {
-  ctx.body = render(ctx)
+  const store = getStore()
+  const matchedRoutes = matchRoutes(routes, ctx.path)
+  for (let i = 0, len = matchedRoutes.length; i < len; i++) {
+    let matchedRoute = matchedRoutes[i]
+    matchedRoute.route.loadData && await matchedRoute.route.loadData(store)
+  }
+  ctx.body = render(ctx, store)
 })
 
 app.listen(3000)

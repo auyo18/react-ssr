@@ -7,8 +7,13 @@ const composeEnhancers =
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
         window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
           // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
-        }) : compose;
+        }) : compose
 
 const getStore = () => createStore(reducer, composeEnhancers(applyMiddleware(thunk)))
 
-export default getStore
+const getClientStore = () => {
+  const defaultState = window.context.state
+  return createStore(reducer, defaultState, composeEnhancers(applyMiddleware(thunk)))
+}
+
+export {getStore, getClientStore}

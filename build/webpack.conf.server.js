@@ -5,7 +5,7 @@ const baseConfig = require('./webpack.conf.base')
 
 const config = merge(baseConfig, {
   target: "node",
-  mode: 'development',
+  mode: 'production',
   entry: './src/server/index.js',
   output: {
     filename: "server.js",
