@@ -26,6 +26,10 @@ class Home extends Component {
   }
 }
 
+Home.loadData = () => {
+  // 负责在服务器渲染之前，把数据加载好
+}
+
 const mapStateToProps = state => ({
   name: state.home.name,
   homeList: state.home.homeList
