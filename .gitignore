@@ -11,7 +11,8 @@ dist/
 /coverage
 
 # production
-/build
+/bundle
+/static
 
 # misc
 .DS_Store

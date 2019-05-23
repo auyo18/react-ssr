@@ -7,7 +7,7 @@ import Home from '../containers/Home'
 const app = new koa()
 const html = renderToString(<Home/>)
 
-app.use(Static('static'))
+app.use(Static('bundle'))
 
 app.use(async ctx => {
   ctx.body = `<!doctype html>
