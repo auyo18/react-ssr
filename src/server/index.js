@@ -5,7 +5,7 @@ import {matchRoutes} from "react-router-config"
 import conditional from 'koa-conditional-get'
 import etag from 'koa-etag'
 import {render} from "../utils"
-import getStore from "../store"
+import {getStore} from "../store"
 import routes from "../routes"
 
 const app = new koa()

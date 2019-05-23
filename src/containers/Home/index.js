@@ -1,17 +1,15 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import Header from '../../components/Header'
 import {getHomeArticleList} from "./store/actions"
 
 class Home extends Component {
   componentDidMount() {
-    this.props.getArticleList()
+    !this.props.homeList.length && this.props.getArticleList()
   }
 
   render() {
     return (
         <div>
-          <Header />
           <p>this is home</p>
           <p>{this.props.name}</p>
           {
