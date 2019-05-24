@@ -17,7 +17,7 @@ app.use(Static('bundle'))
 app.use(async ctx => {
   const store = getStore()
   const matchedRoutes = matchRoutes(routes, ctx.path)
-  const context = {}
+  const context = {css: []}
 
   for (let i = 0, len = matchedRoutes.length; i < len; i++) {
     let matchedRoute = matchedRoutes[i]
@@ -26,6 +26,9 @@ app.use(async ctx => {
 
   const html = render(ctx, store, context)
 
+  if (context.action === 'REPLACE') {
+    ctx.redirect(context.url)
+  }
   if (context.NOT_FOUND) {
     ctx.status = 404
   }

@@ -15,6 +15,8 @@ export const render = (ctx, store, context) => {
       </Provider>
   )
 
+  const cssStr = context.css ? context.css.join('') : ''
+
   return `<!doctype html>
 <html lang="zh_CN">
 <head>
@@ -23,6 +25,7 @@ export const render = (ctx, store, context) => {
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>react-ssr</title>
+  <style>${cssStr}</style>
 </head>
 <body>
 <div id="root">${html}</div>
