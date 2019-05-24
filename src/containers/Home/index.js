@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {getHomeArticleList} from "./store/actions"
+import styles from './index.scss'
+import withStyle from "../../withStyle"
 
 class Home extends Component {
   componentDidMount() {
@@ -9,9 +11,16 @@ class Home extends Component {
 
   render() {
     return (
-        <div>
+        <div className={styles.home}>
           <p>this is home</p>
+          <button onClick={() => {
+            alert(123)
+          }}>click
+          </button>
           <p>{this.props.name}</p>
+          {
+            this._getMoreListDom()
+          }
           {
             this._getListDom()
           }
@@ -22,16 +31,16 @@ class Home extends Component {
   _getListDom() {
     return this.props.homeList.map(item => <p key={item._id}>{item.title}</p>)
   }
-}
 
-Home.loadData = (store) => {
-  // 负责在服务器渲染之前，把数据加载好
-  return store.dispatch(getHomeArticleList())
+  _getMoreListDom() {
+    return this.props.moreList.map(item => <p key={item._id}>{item.title}</p>)
+  }
 }
 
 const mapStateToProps = state => ({
   name: state.home.name,
-  homeList: state.home.homeList
+  homeList: state.home.homeList,
+  moreList: state.home.moreList
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -40,4 +49,10 @@ const mapDispatchToProps = dispatch => ({
   }
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home)
+const ExportHome = connect(mapStateToProps, mapDispatchToProps)(withStyle(Home, styles))
+
+ExportHome.loadData = store => {
+  return store.dispatch(getHomeArticleList())
+}
+
+export default ExportHome

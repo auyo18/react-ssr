@@ -2,6 +2,7 @@ import React from 'react'
 import App from './App'
 import Home from './containers/Home'
 import Login from './containers/Login'
+import NotFound from './containers/NotFound'
 
 const routes = [
   {
@@ -21,6 +22,9 @@ const routes = [
         component: Login,
         exact: true,
         key: 'login'
+      },
+      {
+        component: NotFound
       }
     ]
   }

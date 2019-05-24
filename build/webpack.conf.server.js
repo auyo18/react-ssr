@@ -5,13 +5,32 @@ const baseConfig = require('./webpack.conf.base')
 
 const config = merge(baseConfig, {
   target: "node",
-  mode: 'production',
-  entry: './src/server/index.js',
+  mode: 'development',
+  entry: ['@babel/polyfill', './src/server/index.js'],
   output: {
     filename: "server.js",
     path: path.resolve(__dirname, '../bundle')
   },
-  externals: [nodeExternals()]
+  externals: [nodeExternals()],
+  module: {
+    rules: [
+      {
+        test: /\.scss$/,
+        use: [
+          'isomorphic-style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+              modules: true,
+              localIdentName: '[name]_[local]_[hash:5]'
+            }
+          },
+          'sass-loader'
+        ]
+      }
+    ]
+  }
 })
 
 module.exports = config
