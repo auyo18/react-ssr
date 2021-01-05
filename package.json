@@ -12,7 +12,7 @@
     "dev:build:client": "webpack --config build/webpack.conf.client.js --watch"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "koa": "^2.7.0",
     "koa-conditional-get": "^2.0.0",
     "koa-etag": "^3.0.0",
